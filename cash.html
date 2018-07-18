@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Web Page</title>
+<h3>Currency Notes</h3>
+<input type="text" id="myText">
+<p>Click the "Convert" button to get the denominations.</p>
+<button onclick="myFunction()">Convert</button>
+<p id="demo"></p>
+
+<script>
+ function myFunction() {
+  var x = document.getElementById("myText").value;
+
+  if (isNaN(x))
+  {
+	alert("Must input numbers");
+	//console.log("Error");
+	return false;
+  }
+
+  var U =[100,50,20,10];
+  var factors = new Array();
+  var rem;
+  var i,j,a;
+  var ans=" ";
+
+  if ( x % 10 != 0)
+  {
+	alert("Notes Unavailable, try again!");
+	return false;
+  }
+
+  if ( x < 0 )
+  {
+	alert("Invalid number, try again!");
+	return false;
+  }
+
+  for(i=0;i<4;i++)
+  {	  console.log(U[i]);
+	  if (x>=U[i])
+	  {
+		factors[i]=Math.trunc(x/U[i]); console.log("f"+factors[i]+" ");
+		rem= x%U[i];
+		x=rem;
+	  }
+	  a = factors[i];
+	  for(j=0;j<a;j++)
+	  {
+		ans += "$"+parseFloat(U[i]).toFixed(2)+" ";
+	  }
+  }	//end for
+
+  document.getElementById("demo").innerHTML = ans;
+ }
+</script>
+</head>
